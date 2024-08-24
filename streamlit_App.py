@@ -7,7 +7,6 @@ from langchain.vectorstores import FAISS
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
-import os
 
 st.set_page_config(page_title="Document Genie", layout="wide")
 
@@ -16,8 +15,8 @@ st.markdown("""
 Upload the PDF file and ask a question.
 """)
 
-# API key for Google Generative AI (set your own)
-api_key = ("AIzaSyAqOlO-55G0LMagBeC-pCb2u9QnLenXmrU")
+# Get API key from secrets
+api_key = st.secrets["general"]["google_api_key"]
 
 def get_pdf_text(pdf_docs):
     text = ""
