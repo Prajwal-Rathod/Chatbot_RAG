@@ -1,0 +1,5 @@
+langchain==0.2.14
+langchain_google_genai==1.0.10
+protobuf==5.27.3
+PyPDF2==3.0.1
+streamlit==1.36.0
