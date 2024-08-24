@@ -1,7 +1,6 @@
 streamlit==1.24.0
-PyPDF2==3.0.1
+pypdf==3.6.1
 langchain==0.0.301
 langchain-google-genai==0.0.1
-google-generativeai==0.2.0
+google-generativeai==0.3.1  # Adjust to a compatible version
 faiss-cpu==1.7.4
-
