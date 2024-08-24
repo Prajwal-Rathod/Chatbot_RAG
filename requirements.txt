@@ -4,3 +4,4 @@ langchain==0.0.301
 langchain-google-genai==0.0.1
 google-generativeai==0.2.0
 faiss-cpu==1.7.4
+
