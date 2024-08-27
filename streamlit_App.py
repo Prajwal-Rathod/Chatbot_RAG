@@ -85,14 +85,18 @@ def main():
             st.markdown(f"**{speaker}:** {message}")
 
     # Input at the bottom
-    with st.container():
-        user_question = st.text_input("Ask a question from the PDF files", key="user_question")
-        if st.button("Send", key="send_button") and user_question:
-            st.session_state.conversation.append(("You", user_question))
-            answer = user_input(user_question, api_key)
-            st.session_state.conversation.append(("AI", answer))
-            # Clear the input after submission
-            st.experimental_rerun()
+    user_question = st.text_input("Ask a question from the PDF files", key="user_question")
+    if st.button("Send", key="send_button") and user_question:
+        st.session_state.conversation.append(("You", user_question))
+        answer = user_input(user_question, api_key)
+        st.session_state.conversation.append(("AI", answer))
+        # Clear the input after submission
+        st.text_input("Ask a question from the PDF files", key="user_question", value="")
+
+    # Re-render the chat interface with the new conversation
+    with chat_container:
+        for speaker, message in st.session_state.conversation:
+            st.markdown(f"**{speaker}:** {message}")
 
 if __name__ == "__main__":
     main()
