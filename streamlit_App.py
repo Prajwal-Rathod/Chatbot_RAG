@@ -85,16 +85,18 @@ def main():
             st.markdown(f"**{speaker}:** {message}")
 
     # Input at the bottom
-    user_question = st.text_input("Ask a question from the PDF files", key="user_question")
-    if st.button("Send", key="send_button") and user_question:
+    user_question = st.text_input("Ask a question from the PDF files", key="user_question", on_change=lambda: handle_question(st.session_state.user_question))
+
+def handle_question(user_question):
+    if user_question:
         st.session_state.conversation.append(("You", user_question))
         answer = user_input(user_question, api_key)
         st.session_state.conversation.append(("AI", answer))
         # Clear the input after submission
-        st.text_input("Ask a question from the PDF files", key="user_question", value="")
+        st.session_state.user_question = ""
 
     # Re-render the chat interface with the new conversation
-    with chat_container:
+    with st.container():
         for speaker, message in st.session_state.conversation:
             st.markdown(f"**{speaker}:** {message}")
 
